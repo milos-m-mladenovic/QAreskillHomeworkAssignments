@@ -1,10 +1,10 @@
-package data.models.privateapis;
+package data.models.common;
 
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PatchPrivateCrocodileRequest implements Serializable
+public class CrocodileRequest implements Serializable
 {
 
     @SerializedName("id")
@@ -22,18 +22,25 @@ public class PatchPrivateCrocodileRequest implements Serializable
     @SerializedName("age")
     @Expose
     private Integer age;
-    private final static long serialVersionUID = -4630496161984293916L;
+    private final static long serialVersionUID = 4510398460347185832L;
 
-    public PatchPrivateCrocodileRequest() {
+    public CrocodileRequest() {
     }
 
-    public PatchPrivateCrocodileRequest(Integer id, String name, String sex, String dateOfBirth, Integer age) {
+    public CrocodileRequest(Integer id, String name, String sex, String dateOfBirth, Integer age) {
         super();
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.dateOfBirth = dateOfBirth;
         this.age = age;
+    }
+
+    public CrocodileRequest(String name, String sex, String dateOfBirth) {
+        super();
+        this.name = name;
+        this.sex = sex;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Integer getId() {
