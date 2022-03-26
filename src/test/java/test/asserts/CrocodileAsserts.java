@@ -1,8 +1,7 @@
 package test.asserts;
 
+import data.models.common.CrocodileRequest;
 import data.models.common.CrocodileResponse;
-import data.models.privateapis.*;
-import data.models.publicapis.GetPublicCrocodileResponse;
 import data.models.registration.authentication.RegisterNewUserRequest;
 import data.models.registration.authentication.RegisterNewUserResponse;
 import org.testng.asserts.SoftAssert;
@@ -11,14 +10,14 @@ public class CrocodileAsserts {
 
     SoftAssert softAssert = new SoftAssert();
 
-    public void assertCreateNewCrocodile(CreateCrocodileRequest createCrocodileRequest, CrocodileResponse crocodileResponse) {
+    public void assertCreateNewCrocodile(CrocodileRequest createCrocodileRequest, CrocodileResponse crocodileResponse) {
         softAssert.assertEquals(crocodileResponse.getName(), createCrocodileRequest.getName(), "Name didn't match.");
         softAssert.assertEquals(crocodileResponse.getDateOfBirth(), createCrocodileRequest.getDateOfBirth(), "DOB didn't match.");
         softAssert.assertEquals(crocodileResponse.getSex(), createCrocodileRequest.getSex(), "Sex didn't match.");
         softAssert.assertAll();
     }
 
-    public void assertListOfPublicCrocodiles(GetPublicCrocodileResponse[] getPublicCrocodileResponses) {
+    public void assertListOfPublicCrocodiles(CrocodileResponse[] getPublicCrocodileResponses) {
         for(int i = 0; i < getPublicCrocodileResponses.length; i++) {
             softAssert.assertFalse(getPublicCrocodileResponses[i].getName().isEmpty(), "Name is empty.");
             softAssert.assertFalse(getPublicCrocodileResponses[i].getDateOfBirth().isEmpty(), "DOB is empty.");
@@ -34,7 +33,7 @@ public class CrocodileAsserts {
         softAssert.assertAll();
     }
 
-    public void assertSinglePrivateCrocodile(GetAllPrivateCrocodilesResponse[] getAllPrivateCrocodilesResponses, CrocodileResponse crocodileResponse) {
+    public void assertSinglePrivateCrocodile(CrocodileResponse[] getAllPrivateCrocodilesResponses, CrocodileResponse crocodileResponse) {
         softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getId(), crocodileResponse.getId());
         softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getName(), crocodileResponse.getName());
         softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getSex(), crocodileResponse.getSex());
@@ -43,7 +42,7 @@ public class CrocodileAsserts {
         softAssert.assertAll();
     }
 
-    public void assertAllPrivateCrocodiles(GetAllPrivateCrocodilesResponse[] getAllPrivateCrocodilesResponses) {
+    public void assertAllPrivateCrocodiles(CrocodileResponse[] getAllPrivateCrocodilesResponses) {
         for(int i = 0; i < getAllPrivateCrocodilesResponses.length; i++) {
             softAssert.assertFalse(getAllPrivateCrocodilesResponses[i].getName().isEmpty());
         }

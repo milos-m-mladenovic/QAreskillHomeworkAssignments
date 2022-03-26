@@ -2,12 +2,12 @@ package calls;
 
 import common.GsonFunctions;
 import common.RestAssuredFunctions;
+import data.models.common.CrocodileRequest;
 import data.models.common.CrocodileResponse;
-import data.models.privateapis.*;
 
 public class PrivateAPI {
 
-    public static CrocodileResponse createNewCrocodile(String accessToken, CreateCrocodileRequest createCrocodileRequest) {
+    public static CrocodileResponse createNewCrocodile(String accessToken, CrocodileRequest createCrocodileRequest) {
         return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.post("my/crocodiles/", accessToken, createCrocodileRequest), CrocodileResponse.class);
     }
 
@@ -15,20 +15,20 @@ public class PrivateAPI {
         return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.get("my/crocodiles/" + id + "/", accessToken), CrocodileResponse.class);
     }
 
-    public static GetAllPrivateCrocodilesResponse[] getAllPrivateCrocodiles(String accessToken) {
-        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.get("my/crocodiles/", accessToken), GetAllPrivateCrocodilesResponse[].class);
+    public static CrocodileResponse[] getAllPrivateCrocodiles(String accessToken) {
+        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.get("my/crocodiles/", accessToken), CrocodileResponse[].class);
     }
 
-    public static CrocodileResponse putPrivateCrocodile(int id, String accessToken, PutPrivateCrocodileRequest putPrivateCrocodileRequest) {
-        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.put("my/crocodiles/" + id + "/", accessToken, putPrivateCrocodileRequest), CrocodileResponse.class);
+    public static CrocodileResponse putPrivateCrocodile(int id, String accessToken, CrocodileRequest putCrocodileRequest) {
+        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.put("my/crocodiles/" + id + "/", accessToken, putCrocodileRequest), CrocodileResponse.class);
     }
 
-    public static CrocodileResponse patchPrivateCrocodile(int id, String accessToken, PatchPrivateCrocodileRequest patchPrivateCrocodileRequest) {
-        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.patch("my/crocodiles/" + id + "/", accessToken, patchPrivateCrocodileRequest), CrocodileResponse.class);
+    public static CrocodileResponse patchPrivateCrocodile(int id, String accessToken, CrocodileRequest patchCrocodileRequest) {
+        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.patch("my/crocodiles/" + id + "/", accessToken, patchCrocodileRequest), CrocodileResponse.class);
     }
 
-    public static DeleteResponse deletePrivateCrocodile(int id, String accessToken) {
-        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.delete("my/crocodiles/" + id + "/", accessToken), DeleteResponse.class);
+    public static CrocodileResponse deletePrivateCrocodile(int id, String accessToken) {
+        return GsonFunctions.parseSuccessResponseToModel(RestAssuredFunctions.delete("my/crocodiles/" + id + "/", accessToken), CrocodileResponse.class);
     }
 
 }
