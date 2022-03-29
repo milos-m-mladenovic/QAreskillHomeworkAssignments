@@ -1,10 +1,10 @@
-package data.models.publicapis;
+package data.models.common;
 
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetSinglePublicCrocodileResponse implements Serializable
+public class CrocodileResponse implements Serializable
 {
 
     @SerializedName("id")
@@ -22,12 +22,12 @@ public class GetSinglePublicCrocodileResponse implements Serializable
     @SerializedName("age")
     @Expose
     private Integer age;
-    private final static long serialVersionUID = 5479305665413627993L;
+    private final static long serialVersionUID = -2547618936710283226L;
 
-    public GetSinglePublicCrocodileResponse() {
+    public CrocodileResponse() {
     }
 
-    public GetSinglePublicCrocodileResponse(Integer id, String name, String sex, String dateOfBirth, Integer age) {
+    public CrocodileResponse(Integer id, String name, String sex, String dateOfBirth, Integer age) {
         super();
         this.id = id;
         this.name = name;

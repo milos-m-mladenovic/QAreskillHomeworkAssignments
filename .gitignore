@@ -1,2 +1,4 @@
 # Project exclude paths
 /target/
+# Config file
+src/test/resources/env.properties
