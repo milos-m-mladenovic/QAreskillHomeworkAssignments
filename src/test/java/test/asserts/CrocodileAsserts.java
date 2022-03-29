@@ -4,6 +4,7 @@ import data.models.common.CrocodileRequest;
 import data.models.common.CrocodileResponse;
 import data.models.registration.authentication.RegisterNewUserRequest;
 import data.models.registration.authentication.RegisterNewUserResponse;
+import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
 public class CrocodileAsserts {
@@ -34,11 +35,19 @@ public class CrocodileAsserts {
     }
 
     public void assertSinglePrivateCrocodile(CrocodileResponse[] getAllPrivateCrocodilesResponses, CrocodileResponse crocodileResponse) {
-        softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getId(), crocodileResponse.getId());
-        softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getName(), crocodileResponse.getName());
-        softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getSex(), crocodileResponse.getSex());
-        softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getDateOfBirth(), crocodileResponse.getDateOfBirth());
-        softAssert.assertEquals(getAllPrivateCrocodilesResponses[0].getAge(), crocodileResponse.getAge());
+        CrocodileResponse crocodileExists = null;
+        for(int i = 0; i < getAllPrivateCrocodilesResponses.length; i++) {
+            if (getAllPrivateCrocodilesResponses[i].getId().equals(crocodileResponse.getId())) {
+                crocodileExists = getAllPrivateCrocodilesResponses[i];
+                break;
+            }
+        }
+        Assert.assertNotNull(crocodileExists);
+        softAssert.assertEquals(crocodileExists.getId(), crocodileResponse.getId());
+        softAssert.assertEquals(crocodileExists.getName(), crocodileResponse.getName());
+        softAssert.assertEquals(crocodileExists.getSex(), crocodileResponse.getSex());
+        softAssert.assertEquals(crocodileExists.getDateOfBirth(), crocodileResponse.getDateOfBirth());
+        softAssert.assertEquals(crocodileExists.getAge(), crocodileResponse.getAge());
         softAssert.assertAll();
     }
 
